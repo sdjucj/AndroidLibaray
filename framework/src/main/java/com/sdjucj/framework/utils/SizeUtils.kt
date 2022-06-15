@@ -1,4 +1,4 @@
-package com.cj.framework.utils
+package com.sdjucj.framework.utils
 
 import android.content.res.Resources
 import android.util.DisplayMetrics

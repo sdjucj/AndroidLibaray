@@ -1,8 +1,11 @@
+enableFeaturePreview("VERSION_CATALOGS")
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven(url = "https://jitpack.io")
     }
 }
 dependencyResolutionManagement {
@@ -10,8 +13,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven(url = "https://jitpack.io")
     }
 }
 rootProject.name = "AndroidLibaray"
-include ':app'
-include ':framework'
+include(":app")
+include(":framework")
