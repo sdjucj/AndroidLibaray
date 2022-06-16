@@ -1,4 +1,4 @@
-package com.cj.framework
+package com.sdjucj.framework
 
 import org.junit.Test
 

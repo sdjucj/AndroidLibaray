@@ -1,4 +1,4 @@
-package com.cj.androidlibaray
+package com.sdjucj.androidlibaray
 
 import org.junit.Test
 

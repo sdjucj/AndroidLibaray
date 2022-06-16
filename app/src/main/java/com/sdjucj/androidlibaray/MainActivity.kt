@@ -1,4 +1,4 @@
-package com.cj.androidlibaray
+package com.sdjucj.androidlibaray
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -6,13 +6,6 @@ import android.app.Activity
 import android.content.ContextWrapper
 import android.view.View
 import android.view.Window
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
-import com.cj.framework.R
-import kotlin.properties.ReadWriteProperty
-import kotlin.reflect.KProperty
 
 /**
  * desc:View工具类
@@ -31,4 +24,4 @@ val View.window: Window?
         }
         return null
     }
-//todo chenjing 完善
+//todo chenjign 完善

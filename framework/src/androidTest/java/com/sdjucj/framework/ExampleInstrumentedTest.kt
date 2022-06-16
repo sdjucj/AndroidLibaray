@@ -1,4 +1,4 @@
-package com.cj.framework
+package com.sdjucj.framework
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.cj.framework.test", appContext.packageName)
+        assertEquals("com.sdjucj.framework.test", appContext.packageName)
     }
 }
