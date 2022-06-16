@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.cj.framework">
 
+    <application>
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge"><!-- merge:自动初始化 remove:手动初始化-->
+            <meta-data
+                android:name="com.sdjucj.framework.AppAutoInitializer"
+                android:value="androidx.startup" />
+        </provider>
+    </application>
 </manifest>
