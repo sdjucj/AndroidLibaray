@@ -2,6 +2,7 @@
 
 package com.sdjucj.framework.utils
 
+import android.app.Activity
 import android.app.Application
 import android.content.Intent
 import android.content.pm.ApplicationInfo
@@ -9,8 +10,11 @@ import android.content.pm.PackageInfo
 import android.content.res.Configuration
 import android.location.LocationManager
 import android.net.Uri
+import android.os.Build
 import android.os.Process
 import android.provider.Settings
+import androidx.activity.result.ActivityResult
+import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
 import androidx.core.content.pm.PackageInfoCompat
 
@@ -69,3 +73,53 @@ fun relaunch(killProcess: Boolean = true) =
         startActivity(it)
         if (killProcess) Process.killProcess(Process.myPid())
     }
+
+/**
+ * 安装应用
+ * @param filePath 安装包路径
+ */
+fun installAPK(filePath: String) {
+    val uri = filePathToUri(filePath)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (sApplication.packageManager.canRequestPackageInstalls()) {
+            Intent(Intent.ACTION_VIEW)
+                .setDataAndType(uri, "application/vnd.android.package-archive")
+                .defaultCategory()
+                .newTask()
+                .grantReadUriPermission()
+                .startActivity()
+        } else {
+            launchRequestApkInstallPermission {
+                if (it?.resultCode == Activity.RESULT_OK) {
+                    installAPK(filePath)
+                }
+            }
+        }
+    } else {
+        Intent(Intent.ACTION_VIEW)
+            .setDataAndType(uri, "application/vnd.android.package-archive")
+            .defaultCategory()
+            .newTask()
+            .grantReadUriPermission()
+            .startActivity()
+    }
+}
+
+/**
+ * 跳转到安装apk权限申请界面
+ */
+@RequiresApi(Build.VERSION_CODES.O)
+private fun launchRequestApkInstallPermission(
+    onActivityResult: ((activityResult: ActivityResult?) -> Unit)? = null
+) {
+    val selfPackageUri = Uri.parse("package:$packageName")
+    /*val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, selfPackageUri)
+    } else {
+        Intent(Settings.ACTION_SECURITY_SETTINGS)
+    }
+    intent.startActivityForResult(onActivityResult)*/
+    Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, selfPackageUri)
+        .startActivityForResult(onActivityResult)
+}
+
