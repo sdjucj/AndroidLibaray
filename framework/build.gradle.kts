@@ -55,4 +55,5 @@ dependencies {
     api(libs.androidx.fragment.ktx)
     api(libs.androidx.startup)
     api(libs.kotlinx.coroutines.android)
+    api(libs.androidx.lifecycle.common)
 }
